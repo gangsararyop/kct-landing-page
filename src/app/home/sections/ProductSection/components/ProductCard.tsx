@@ -1,6 +1,9 @@
-import React, { FC, useMemo } from "react";
+"use client";
+
+import React, { FC, useMemo, useRef } from "react";
 import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
+import useOnScreen from "@/hooks/useOnScreen";
 import { Product } from "../types";
 
 type ProductCardProps = {
@@ -9,6 +12,12 @@ type ProductCardProps = {
 };
 
 const ProductCard: FC<ProductCardProps> = ({ product, index }) => {
+  const ref1 = useRef<HTMLDivElement>(null);
+  const isVisible1 = useOnScreen(ref1);
+
+  const ref2 = useRef<HTMLDivElement>(null);
+  const isVisible2 = useOnScreen(ref2);
+
   const { title, image, subtitle, desc } = product;
 
   const isOpposite = useMemo(() => index % 2 === 0, [index]);
@@ -26,8 +35,13 @@ const ProductCard: FC<ProductCardProps> = ({ product, index }) => {
       </div>
 
       <div
+        ref={ref2}
         className={`relative w-full sm:w-[432px] lg:w-[369px] xl:w-[432px] h-[218px] sm:h-[323.34px] lg:h-[288px] xl:h-[323.34px] flex-shrink-0 mx-auto lg:mx-0 ${
           isOpposite ? "lg:-order-1" : "lg:order-1"
+        } ${
+          isVisible2
+            ? "animate-in fade-in duration-1000"
+            : "animate-out fade-out"
         }`}
       >
         <Image
@@ -67,14 +81,20 @@ const ProductCard: FC<ProductCardProps> = ({ product, index }) => {
           </div>
         </div>
 
-        <div className="flex flex-row align-middle gap-6">
+        <div ref={ref1} className="flex flex-row align-middle gap-6">
           <div
             className={`w-6 flex-shrink-0 hidden lg:flex ${
               !isOpposite && "lg:hidden"
             }`}
           />
 
-          <p className="text-sm xl:text-base text-white text-center lg:text-start">
+          <p
+            className={`text-sm xl:text-base text-white text-center lg:text-start ease-in-out ${
+              isVisible1
+                ? "animate-in fade-in slide-in-from-top-7 opacity-100 duration-1000"
+                : ""
+            }`}
+          >
             {desc}
           </p>
         </div>

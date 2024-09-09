@@ -52,7 +52,12 @@ const Navbar = () => {
             </div>
 
             <div className="text-base font-medium">
-              <Button variant="outline" size="lg">
+              <Button
+                variant="default"
+                color="white"
+                size="lg"
+                onClick={() => scrollTo("contact-us-section")}
+              >
                 CONTACT US
               </Button>
             </div>
