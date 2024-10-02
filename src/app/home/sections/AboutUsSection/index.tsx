@@ -12,7 +12,7 @@ const AboutUsSection = () => {
 
   return (
     <div
-      id="aboutus-section"
+      id="about-us-section"
       className="max-w-8xl px-6 lg:px-16 2xl:px-40 mx-auto mb-6 sm:mb-14 xl:mb-20"
     >
       <div className="w-full max-w-[1302px] mx-auto">

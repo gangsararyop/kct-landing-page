@@ -1,7 +1,6 @@
 import React from "react";
 import { products } from "./static";
 import ProductCard from "./components/ProductCard";
-import useOnScreen from "@/hooks/useOnScreen";
 
 const ProductSection = () => {
   return (

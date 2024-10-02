@@ -3,6 +3,7 @@ import { EB_Garamond, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ScrollToProvider from "@/providers/ScrollToProvider";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -33,11 +34,11 @@ export default function RootLayout({
     >
       <link rel="icon" href="/static/logo/logo-color.png" sizes="any" />
       <body>
-        <Navbar />
-
-        {children}
-
-        <Footer />
+        <ScrollToProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </ScrollToProvider>
       </body>
     </html>
   );
